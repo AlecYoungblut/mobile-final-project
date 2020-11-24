@@ -16,7 +16,7 @@
         <item name="android:windowActivityTransitions">true</item>
 
         <!-- specify enter and exit transitions -->
-        <item name="android:windowEnterTransition">@transition/slide_transition</item>
-        <item name="android:windowExitTransition">@transition/slide_transition</item>
+        <item name="android:windowEnterTransition">@transition/slide_in</item>
+        <item name="android:windowExitTransition">@transition/slide_out</item>
     </style>
 </resources>
