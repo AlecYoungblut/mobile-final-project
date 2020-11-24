@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Kotlin AlertDialog</string>
+    <string name="button">click button</string>
+    <string name="dialogTitle">More Information</string>
+    <string name="dialogMessage">Deleting file may be harm your system</string>
+    <!--    TENSOR FLOW STUFF-->
+    <string name="gpu" translatable="false">GPU</string>
+    <string name="re_run_model" translatable="false">Re-run model</string>
+    <string name="choose_a_style" translatable="false">Choose a Style</string>
+</resources>

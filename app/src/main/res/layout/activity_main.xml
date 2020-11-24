@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/backgroundWaves"
+        android:layout_width="416dp"
+        android:layout_height="354dp"
+        android:background="@drawable/mainbackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mainbackground" />
+
+    <ImageView
+        android:id="@+id/headerImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/mainTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.75"
+        app:srcCompat="@drawable/image_3" />
+
+    <ImageView
+        android:id="@+id/mainTitle"
+        android:layout_width="373dp"
+        android:layout_height="81dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/iconBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/maintitleactual" />
+
+    <ImageView
+        android:id="@+id/iconBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/backgroundWaves"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mainsubtitlerect" />
+
+    <ImageView
+        android:id="@+id/tensorflowIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iconBox"
+        app:layout_constraintEnd_toEndOf="@+id/iconBox"
+        app:layout_constraintTop_toTopOf="@+id/iconBox"
+        app:srcCompat="@drawable/tensorflow" />
+
+    <ImageView
+        android:id="@+id/mlkitIcon"
+        android:layout_width="57dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iconBox"
+        app:layout_constraintEnd_toStartOf="@+id/tensorflowIcon"
+        app:layout_constraintStart_toStartOf="@+id/iconBox"
+        app:layout_constraintTop_toTopOf="@+id/iconBox"
+        app:srcCompat="@drawable/mlkit" />
+
+    <ImageButton
+        android:id="@+id/start_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:background="@drawable/mainstartbutton"
+        android:onClick="onStartButtonClick"
+        app:layout_constraintBottom_toTopOf="@+id/quit_button"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundWaves"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundWaves"
+        app:layout_constraintVertical_bias="0.51"
+        app:srcCompat="@drawable/mainstartbutton" />
+
+    <ImageButton
+        android:id="@+id/quit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/mainquitbutton"
+        android:onClick="onQuitButtonClick"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundWaves"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/mainquitbutton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
