@@ -49,6 +49,7 @@ class ChoosePhotoActivity : AppCompatActivity() {
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE){
             val imageView: ImageView = findViewById<View>(R.id.image_result) as ImageView
             imageView.setImageURI(data?.data) // handle chosen image
+            ResultActivity.Companion.inputPhoto = imageView
         }
     }
 }

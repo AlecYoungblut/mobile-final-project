@@ -54,6 +54,13 @@ class ResultActivity :
     StyleFragment.OnListFragmentInteractionListener,
     CameraFragment.OnCaptureFinished {
 
+    companion object {
+        private const val ID = "org.tensorflow.lite.examples.styletransfer.CropTop"
+        private val ID_BYTES = ID.toByteArray(Charset.forName("UTF-8"))
+        lateinit var inputPhoto : ImageView
+        lateinit var inputStyle : ImageView
+    }
+
     private var isRunningModel = false
     private val stylesFragment: StyleFragment = StyleFragment()
     private var selectedStyle: String = ""

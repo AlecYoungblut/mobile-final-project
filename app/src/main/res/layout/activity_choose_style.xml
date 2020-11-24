@@ -129,12 +129,11 @@
                 android:layout_width="115dp"
                 android:layout_height="95dp"
                 android:layout_marginStart="16dp"
-                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style19" />
 
             <ImageButton
                 android:id="@+id/styleTwo"
@@ -145,7 +144,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/styleThree"
                 app:layout_constraintStart_toEndOf="@+id/styleOne"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style3" />
 
             <ImageButton
                 android:id="@+id/styleThree"
@@ -156,7 +155,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style16" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -178,7 +177,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.526"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style22" />
 
             <ImageButton
                 android:id="@+id/styleFive"
@@ -189,7 +188,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/styleSix"
                 app:layout_constraintStart_toEndOf="@+id/styleFour"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style6" />
 
             <ImageButton
                 android:id="@+id/styleSix"
@@ -201,7 +200,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.526"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style17" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -221,7 +220,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style4" />
 
             <ImageButton
                 android:id="@+id/styleEight"
@@ -232,7 +231,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/styleNine"
                 app:layout_constraintStart_toEndOf="@+id/styleSeven"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style1" />
 
             <ImageButton
                 android:id="@+id/styleNine"
@@ -243,7 +242,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/styleone" />
+                app:srcCompat="@drawable/style8" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
