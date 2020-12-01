@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer
+package com.example.finalproject.tensorflow
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

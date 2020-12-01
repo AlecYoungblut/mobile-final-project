@@ -4,10 +4,10 @@
 -->
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android">
     <!--  may use explode, slide, fade -->
-    <slide android:duration="500"
+    <slide android:duration="1000"
         android:fromXDelta="0%"
         android:fromYDelta="0%"
-        android:toXDelta="0%"
-        android:toYDelta="100%"
+        android:toXDelta="100%"
+        android:toYDelta="0%"
         />
 </transitionSet>

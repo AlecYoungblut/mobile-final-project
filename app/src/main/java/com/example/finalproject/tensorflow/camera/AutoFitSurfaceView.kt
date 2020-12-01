@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer.camera
+package com.example.finalproject.tensorflow.camera
 
 import android.content.Context
 import android.util.AttributeSet

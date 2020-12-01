@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer.camera
+package com.example.finalproject.tensorflow.camera
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.Observer
@@ -42,6 +42,8 @@ import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
 import android.view.ViewGroup
+import com.example.finalproject.tensorflow.camera.getPreviewOutputSize
+import com.example.finalproject.tensorflow.camera.verifyAspectRatio
 import java.io.Closeable
 import java.io.File
 import java.io.FileOutputStream
@@ -58,7 +60,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import org.tensorflow.lite.examples.styletransfer.ImageUtils
+import com.example.finalproject.tensorflow.ImageUtils
 
 @SuppressWarnings("GoodTime")
 class CameraFragment : Fragment() {

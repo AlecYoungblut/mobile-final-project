@@ -1,43 +1,36 @@
 package com.example.finalproject
 
 import android.Manifest
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.hardware.camera2.CameraCharacteristics
+import android.net.Uri
 import android.os.Bundle
 import android.os.Process
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.BounceInterpolator
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.HorizontalScrollView
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.ProgressBar
-import android.widget.Switch
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.request.RequestOptions
-import com.example.finalproject.R
+import com.example.finalproject.tensorflow.*
+import com.example.finalproject.tensorflow.camera.CameraFragment
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.asCoroutineDispatcher
+import kotlinx.coroutines.async
 import java.io.File
 import java.nio.charset.Charset
 import java.security.MessageDigest
 import java.util.concurrent.Executors
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.async
-import org.tensorflow.lite.examples.styletransfer.*
-import org.tensorflow.lite.examples.styletransfer.camera.CameraFragment
+
 
 // This is an arbitrary number we are using to keep tab of the permission
 // request. Where an app has multiple context for requesting permission,
@@ -57,7 +50,8 @@ class ResultActivity :
     companion object {
         private const val ID = "org.tensorflow.lite.examples.styletransfer.CropTop"
         private val ID_BYTES = ID.toByteArray(Charset.forName("UTF-8"))
-        lateinit var inputPhoto : ImageView
+        lateinit var inputPhotoPath : String
+        lateinit var inputPhoto : Bitmap
         lateinit var inputStyle : ImageView
     }
 
@@ -74,7 +68,7 @@ class ResultActivity :
     private lateinit var rerunButton: Button
     private lateinit var captureButton: ImageButton
     private lateinit var progressBar: ProgressBar
-    private lateinit var horizontalScrollView: HorizontalScrollView
+    //private lateinit var horizontalScrollView: HorizontalScrollView
 
     private var lastSavedFile = ""
     private var useGPU = false
@@ -88,9 +82,9 @@ class ResultActivity :
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
+        //val toolbar: Toolbar = findViewById(R.id.toolbar)
+        //setSupportActionBar(toolbar)
+        //supportActionBar?.setDisplayShowTitleEnabled(false)
 
         viewFinder = findViewById(R.id.view_finder)
         resultImageView = findViewById(R.id.result_imageview)
@@ -98,7 +92,7 @@ class ResultActivity :
         styleImageView = findViewById(R.id.style_imageview)
         captureButton = findViewById(R.id.capture_button)
         progressBar = findViewById(R.id.progress_circular)
-        horizontalScrollView = findViewById(R.id.horizontal_scroll_view)
+        //horizontalScrollView = findViewById(R.id.horizontal_scroll_view)
         val useGpuSwitch: Switch = findViewById(R.id.switch_use_gpu)
 
         // Request camera permissions
@@ -106,21 +100,21 @@ class ResultActivity :
             addCameraFragment()
         } else {
             ActivityCompat.requestPermissions(
-                this,
-                REQUIRED_PERMISSIONS,
-                REQUEST_CODE_PERMISSIONS
+                    this,
+                    REQUIRED_PERMISSIONS,
+                    REQUEST_CODE_PERMISSIONS
             )
         }
 
         viewModel = AndroidViewModelFactory(application).create(MLExecutionViewModel::class.java)
 
         viewModel.styledBitmap.observe(
-            this,
-            Observer { resultImage ->
-                if (resultImage != null) {
-                    updateUIWithResults(resultImage)
+                this,
+                Observer { resultImage ->
+                    if (resultImage != null) {
+                        updateUIWithResults(resultImage)
+                    }
                 }
-            }
         )
 
         mainScope.async(inferenceThread) {
@@ -154,9 +148,13 @@ class ResultActivity :
             }
         }
 
+        Log.d(TAG, "Start of URI Load")
+
         progressBar.visibility = View.INVISIBLE
-        lastSavedFile = getLastTakenPicture()
-        setImageView(originalImageView, lastSavedFile)
+        //lastSavedFile = getLastTakenPicture()
+        lastSavedFile = inputPhotoPath
+        Log.d(TAG, inputPhotoPath)
+        setImageView(originalImageView, inputPhoto)
 
         animateCameraButton()
         setupControls()
@@ -196,7 +194,7 @@ class ResultActivity :
         val logText: TextView = findViewById(R.id.log_view)
         logText.text = modelExecutionResult.executionLog
         enableControls(true)
-        horizontalScrollView.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
+        //.fullScroll(HorizontalScrollView.FOCUS_RIGHT)
     }
 
     private fun enableControls(enable: Boolean) {
@@ -236,9 +234,9 @@ class ResultActivity :
      * been granted? If yes, start Camera. Otherwise display a toast
      */
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
+            requestCode: Int,
+            permissions: Array<String>,
+            grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == REQUEST_CODE_PERMISSIONS) {
@@ -247,9 +245,9 @@ class ResultActivity :
                 viewFinder.post { setupControls() }
             } else {
                 Toast.makeText(
-                    this,
-                    "Permissions not granted by the user.",
-                    Toast.LENGTH_SHORT
+                        this,
+                        "Permissions not granted by the user.",
+                        Toast.LENGTH_SHORT
                 ).show()
                 finish()
             }
@@ -261,21 +259,25 @@ class ResultActivity :
      */
     private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
         checkPermission(
-            it, Process.myPid(), Process.myUid()
+                it, Process.myPid(), Process.myUid()
         ) == PackageManager.PERMISSION_GRANTED
     }
 
     override fun onCaptureFinished(file: File) {
         val msg = "Photo capture succeeded: ${file.absolutePath}"
         Log.d(TAG, msg)
-
-        lastSavedFile = file.absolutePath
-        setImageView(originalImageView, lastSavedFile)
+        //lastSavedFile = file.absolutePath
+        //setImageView(originalImageView, lastSavedFile)
     }
 
     // And update once new picture is taken?
     // Alternatively we can provide user an ability to select any of taken photos
     private fun getLastTakenPicture(): String {
+        // SET THIS
+
+
+
+
         val directory = baseContext.filesDir // externalMediaDirs.first()
         var files =
             directory.listFiles()?.filter { file -> file.absolutePath.endsWith(".jpg") }?.sorted()
@@ -285,7 +287,7 @@ class ResultActivity :
         }
 
         val file = files.last()
-        Log.d(TAG, "lastsavedfile: " + file.absolutePath)
+        //Log.d(TAG, "lastsavedfile: " + file.absolutePath)
         return file.absolutePath
     }
 
@@ -302,7 +304,7 @@ class ResultActivity :
     }
 
     private fun startRunningModel() {
-        if (!isRunningModel && lastSavedFile.isNotEmpty() && selectedStyle.isNotEmpty()) {
+        if (!isRunningModel && selectedStyle.isNotEmpty()) {
             val chooseStyleLabel: TextView = findViewById(R.id.choose_style_text_view)
             chooseStyleLabel.visibility = View.GONE
             enableControls(false)
@@ -310,8 +312,8 @@ class ResultActivity :
             resultImageView.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
             viewModel.onApplyStyle(
-                baseContext, lastSavedFile, selectedStyle, styleTransferModelExecutor,
-                inferenceThread
+                    baseContext, lastSavedFile, selectedStyle, styleTransferModelExecutor,
+                    inferenceThread
             )
         } else {
             Toast.makeText(this, "Previous Model still running", Toast.LENGTH_SHORT).show()
@@ -322,10 +324,10 @@ class ResultActivity :
     // will work on this part only, making the preview and the result show the same base
     class CropTop : BitmapTransformation() {
         override fun transform(
-            pool: BitmapPool,
-            toTransform: Bitmap,
-            outWidth: Int,
-            outHeight: Int
+                pool: BitmapPool,
+                toTransform: Bitmap,
+                outWidth: Int,
+                outHeight: Int
         ): Bitmap {
             return if (toTransform.width == outWidth && toTransform.height == outHeight) {
                 toTransform

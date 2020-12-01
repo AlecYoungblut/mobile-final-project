@@ -22,7 +22,7 @@ class ChooseStyleActivity : AppCompatActivity() {
     }
 
     fun onNextButtonClick(view: View){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, ResultActivity::class.java)
         startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
     }
 

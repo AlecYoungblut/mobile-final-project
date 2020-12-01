@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer
+package com.example.finalproject.tensorflow
 
 import android.content.Context
 import android.os.Bundle
@@ -25,6 +25,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.finalproject.R
+import com.example.finalproject.tensorflow.StyleRecyclerViewAdapter
 
 /**
  * A fragment representing a list of available Styles to apply

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer
+package com.example.finalproject.tensorflow
 
 import android.content.Context
 import android.net.Uri
@@ -25,7 +25,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.finalproject.R
-import org.tensorflow.lite.examples.styletransfer.StyleFragment.OnListFragmentInteractionListener
+import com.example.finalproject.tensorflow.StyleFragment.OnListFragmentInteractionListener
 
 /**
  * [StyleRecyclerViewAdapter] that can display a [StyleItem] and makes a call to the

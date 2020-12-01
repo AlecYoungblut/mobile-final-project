@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.tensorflow.lite.examples.styletransfer
+package com.example.finalproject.tensorflow
 
 import android.content.Context
 import android.os.SystemClock
