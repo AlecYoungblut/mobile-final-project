@@ -58,7 +58,7 @@ class StyleRecyclerViewAdapter(
     val imagePath = styles[position]
 
     Glide.with(context)
-      .load(Uri.parse("file:///android_asset/thumbnails/$imagePath"))
+      .load(Uri.parse(imagePath))
       .centerInside()
       .into(holder.imageView)
 

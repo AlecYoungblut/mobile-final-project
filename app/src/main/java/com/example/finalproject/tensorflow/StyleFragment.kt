@@ -44,7 +44,7 @@ class StyleFragment : DialogFragment() {
     val view = inflater.inflate(R.layout.fragment_style_list, container, false)
 
     val styles = ArrayList<String>()
-    styles.addAll(activity!!.assets.list("thumbnails")!!)
+    styles.addAll(activity!!.assets.list("styles")!!)
 
     // Set the adapter
     if (view is RecyclerView) {

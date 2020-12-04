@@ -79,6 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/buttonnewphoto"
+        android:onClick="onTakePhotoButtonClick"
         app:layout_constraintBottom_toTopOf="@+id/choose_photo_button"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintStart_toStartOf="@+id/imageView4"

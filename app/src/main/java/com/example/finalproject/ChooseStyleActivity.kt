@@ -3,12 +3,17 @@ package com.example.finalproject
 import android.app.ActivityOptions
 import android.app.Dialog
 import android.content.Intent
+import android.content.res.AssetManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.drawToBitmap
+import java.io.InputStream
 
+
+private const val TAG = "StyAct"
 
 class ChooseStyleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,16 +41,16 @@ class ChooseStyleActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    fun onStyleClick(view: View){
+    private fun getUriFromAssetName(name: String): String {
+        return "file:///android_asset/styles/$name"
+    }
 
+    fun onStyleClick(view: View){
         when(view.id)
         {
             R.id.styleOne -> {
-//                val btn = findViewById<View>(R.id.styleOne) as ImageButton
-//                val drawable = btn.drawable
-//                if (drawable.constantState == resources.getDrawable(R.drawable.style19).constantState) {
-//                    ResultActivity.Companion.style.setImageResource(drawable)
-//                }
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style19.jpg")
+                Log.d(TAG, getUriFromAssetName("style19"))
             }
         }
     }

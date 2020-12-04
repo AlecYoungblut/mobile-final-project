@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kotlin AlertDialog</string>
+    <string name="app_name">Style Transfer with TensorFlow</string>
     <string name="button">click button</string>
     <string name="dialogTitle">More Information</string>
     <string name="dialogMessage">Deleting file may be harm your system</string>

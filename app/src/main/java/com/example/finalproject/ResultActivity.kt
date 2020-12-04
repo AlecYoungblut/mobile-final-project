@@ -44,19 +44,18 @@ private const val TAG = "ResultActivity"
 
 class ResultActivity :
     AppCompatActivity(),
-    StyleFragment.OnListFragmentInteractionListener,
     CameraFragment.OnCaptureFinished {
 
     companion object {
         private const val ID = "org.tensorflow.lite.examples.styletransfer.CropTop"
         private val ID_BYTES = ID.toByteArray(Charset.forName("UTF-8"))
+        //lateinit var inputPhotoFile : File
         lateinit var inputPhotoPath : String
         lateinit var inputPhoto : Bitmap
-        lateinit var inputStyle : ImageView
+        lateinit var inputStylePath : String
     }
 
     private var isRunningModel = false
-    private val stylesFragment: StyleFragment = StyleFragment()
     private var selectedStyle: String = ""
 
     private lateinit var cameraFragment: CameraFragment
@@ -144,7 +143,7 @@ class ResultActivity :
 
         styleImageView.setOnClickListener {
             if (!isRunningModel) {
-                stylesFragment.show(supportFragmentManager, "StylesFragment")
+                startRunningModel()
             }
         }
 
@@ -155,6 +154,9 @@ class ResultActivity :
         lastSavedFile = inputPhotoPath
         Log.d(TAG, inputPhotoPath)
         setImageView(originalImageView, inputPhoto)
+        Log.d(TAG, inputStylePath)
+        setImageView(styleImageView, inputStylePath)
+        selectedStyle = inputStylePath
 
         animateCameraButton()
         setupControls()
@@ -291,13 +293,7 @@ class ResultActivity :
         return file.absolutePath
     }
 
-    override fun onListFragmentInteraction(item: String) {
-        Log.d(TAG, item)
-        selectedStyle = item
-        stylesFragment.dismiss()
 
-        startRunningModel()
-    }
 
     private fun getUriFromAssetThumb(thumb: String): String {
         return "file:///android_asset/thumbnails/$thumb"
@@ -308,7 +304,7 @@ class ResultActivity :
             val chooseStyleLabel: TextView = findViewById(R.id.choose_style_text_view)
             chooseStyleLabel.visibility = View.GONE
             enableControls(false)
-            setImageView(styleImageView, getUriFromAssetThumb(selectedStyle))
+            setImageView(styleImageView, selectedStyle)
             resultImageView.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
             viewModel.onApplyStyle(
