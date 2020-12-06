@@ -10,9 +10,10 @@
         android:layout_width="377dp"
         android:layout_height="74dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863"
-        tools:layout_editor_absoluteX="8dp">
+        app:layout_constraintVertical_bias="0.863">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -58,8 +59,9 @@
         android:layout_marginBottom="4dp"
         android:background="@drawable/backgroundbox1"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:srcCompat="@drawable/backgroundbox1"
-        tools:layout_editor_absoluteX="-1dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/backgroundbox1" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -70,19 +72,6 @@
         app:layout_constraintStart_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/imageView5"
         app:srcCompat="@drawable/selecttext" />
-
-    <ImageButton
-        android:id="@+id/imageButton19"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/buttonnext"
-        android:onClick="onNextButtonClick"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton20"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/buttonnext" />
 
     <ImageButton
         android:id="@+id/imageButton20"
@@ -98,28 +87,80 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="395dp"
-        android:layout_height="358dp"
-        android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton19"
+        android:layout_width="393dp"
+        android:layout_height="438dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton20"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="395dp"
-            android:layout_height="356dp"
+            android:layout_width="396dp"
+            android:layout_height="451dp"
             android:background="@drawable/backgroundbox2"
-            app:srcCompat="@drawable/backgroundbox2"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="-1dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/backgroundbox2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="394dp"
-            android:layout_height="113dp"
+            android:id="@+id/constraintLayout2"
+            android:layout_width="397dp"
+            android:layout_height="134dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/styleFour"
+                android:layout_width="115dp"
+                android:layout_height="95dp"
+                android:layout_marginStart="16dp"
+                android:onClick="onStyleClick"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.526"
+                app:srcCompat="@drawable/style22" />
+
+            <ImageButton
+                android:id="@+id/styleFive"
+                android:layout_width="115dp"
+                android:layout_height="95dp"
+                android:onClick="onStyleClick"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/styleSix"
+                app:layout_constraintStart_toEndOf="@+id/styleFour"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/style6" />
+
+            <ImageButton
+                android:id="@+id/styleSix"
+                android:layout_width="115dp"
+                android:layout_height="95dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="onStyleClick"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.526"
+                app:srcCompat="@drawable/style17" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="396dp"
+            android:layout_height="137dp"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView7"
             app:layout_constraintVertical_bias="1.0">
@@ -140,6 +181,7 @@
                 android:id="@+id/styleTwo"
                 android:layout_width="115dp"
                 android:layout_height="95dp"
+                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/styleThree"
@@ -152,6 +194,7 @@
                 android:layout_width="115dp"
                 android:layout_height="95dp"
                 android:layout_marginEnd="16dp"
+                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -161,55 +204,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="394dp"
-            android:layout_height="114dp"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageButton
-                android:id="@+id/styleFour"
-                android:layout_width="115dp"
-                android:layout_height="95dp"
-                android:layout_marginStart="16dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.526"
-                app:srcCompat="@drawable/style22" />
-
-            <ImageButton
-                android:id="@+id/styleFive"
-                android:layout_width="115dp"
-                android:layout_height="95dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/styleSix"
-                app:layout_constraintStart_toEndOf="@+id/styleFour"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/style6" />
-
-            <ImageButton
-                android:id="@+id/styleSix"
-                android:layout_width="115dp"
-                android:layout_height="95dp"
-                android:layout_marginEnd="16dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.526"
-                app:srcCompat="@drawable/style17" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout3"
             android:layout_width="394dp"
-            android:layout_height="113dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="135dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView7"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
@@ -217,6 +218,7 @@
                 android:layout_width="115dp"
                 android:layout_height="95dp"
                 android:layout_marginStart="16dp"
+                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -227,6 +229,7 @@
                 android:id="@+id/styleEight"
                 android:layout_width="115dp"
                 android:layout_height="95dp"
+                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/styleNine"
@@ -239,6 +242,7 @@
                 android:layout_width="115dp"
                 android:layout_height="95dp"
                 android:layout_marginEnd="16dp"
+                android:onClick="onStyleClick"
                 android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

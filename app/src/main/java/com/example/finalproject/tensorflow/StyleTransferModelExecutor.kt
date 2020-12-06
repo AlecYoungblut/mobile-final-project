@@ -72,7 +72,6 @@ class StyleTransferModelExecutor(
     context: Context
   ): ModelExecutionResult {
     try {
-      Log.i(TAG, "running models")
 
       fullExecutionTime = SystemClock.uptimeMillis()
       preProcessTime = SystemClock.uptimeMillis()
@@ -96,7 +95,6 @@ class StyleTransferModelExecutor(
       // That would be a good practice in case this was applied to a video stream.
       interpreterPredict.runForMultipleInputsOutputs(inputsForPredict, outputsForPredict)
       stylePredictTime = SystemClock.uptimeMillis() - stylePredictTime
-      Log.d(TAG, "Style Predict Time to run: $stylePredictTime")
 
       val inputsForStyleTransfer = arrayOf(contentArray, styleBottleneck)
       val outputsForStyleTransfer = HashMap<Int, Any>()
@@ -110,7 +108,6 @@ class StyleTransferModelExecutor(
         outputsForStyleTransfer
       )
       styleTransferTime = SystemClock.uptimeMillis() - styleTransferTime
-      Log.d(TAG, "Style apply Time to run: $styleTransferTime")
 
       postProcessTime = SystemClock.uptimeMillis()
       var styledImage =
@@ -118,7 +115,6 @@ class StyleTransferModelExecutor(
       postProcessTime = SystemClock.uptimeMillis() - postProcessTime
 
       fullExecutionTime = SystemClock.uptimeMillis() - fullExecutionTime
-      Log.d(TAG, "Time to run everything: $fullExecutionTime")
 
       return ModelExecutionResult(
         styledImage,

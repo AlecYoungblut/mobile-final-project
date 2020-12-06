@@ -69,12 +69,10 @@ class ChoosePhotoActivity : AppCompatActivity() {
         var files =
             directory.listFiles()?.filter { file -> file.absolutePath.endsWith(".jpg") }?.sorted()
         if (files == null || files.isEmpty()) {
-            Log.d(TAG, "there is no previous saved file")
             return ""
         }
 
         val file = files.last()
-        Log.d(TAG, "lastsavedfile: " + file.absolutePath)
         return file.absolutePath
     }
 
@@ -97,19 +95,7 @@ class ChoosePhotoActivity : AppCompatActivity() {
             cursor!!.moveToFirst()
             val columnIndex = cursor!!.getColumnIndex(filePathColumn[0])
             val picturePath = cursor!!.getString(columnIndex)
-            val uriPathHelper = URIPathHelper()
-            val filePath = uriPathHelper.getPath(this, data?.data!!)
-            // val directory = baseContext.filesDir
-            Log.d(TAG, "App Directory")
-            Log.d(TAG, baseContext.filesDir.toString())
-            Log.d(TAG, "Picture Path From File")
-            data?.data!!.path?.let { Log.d(TAG, it) }
-            Log.d(TAG, "Picture Path From Code")
-            Log.d(TAG, picturePath)
-            Log.d(TAG, "Picture Path From Helper Method")
-            filePath?.let { Log.d(TAG, it) }
             cursor!!.close()
-            //ResultActivity.Companion.inputPhotoFile = File(Uri.decode(data?.data!!.toString()));
             ResultActivity.Companion.inputPhotoPath = picturePath
             ResultActivity.Companion.inputPhoto = imageView.drawToBitmap()
         }

@@ -50,7 +50,39 @@ class ChooseStyleActivity : AppCompatActivity() {
         {
             R.id.styleOne -> {
                 ResultActivity.Companion.inputStylePath = getUriFromAssetName("style19.jpg")
-                Log.d(TAG, getUriFromAssetName("style19"))
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleTwo -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style3.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleThree -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style16.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleFour -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style22.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleFive -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style6.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleSix -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style17.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleSeven -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style4.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleEight -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style1.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }
+            R.id.styleNine -> {
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style8.jpg")
+                startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
         }
     }
