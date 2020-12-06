@@ -157,9 +157,7 @@ class ResultActivity :
             Toast.makeText(this, "Image saved! ${test2}.jpg", Toast.LENGTH_SHORT).show()
             val share = Intent(Intent.ACTION_SEND)
             share.type = "image/jpeg"
-
             share.putExtra(Intent.EXTRA_STREAM,uri)
-
             startActivity(Intent.createChooser(share, "Share Image"))
         } else {
             ActivityCompat.requestPermissions(

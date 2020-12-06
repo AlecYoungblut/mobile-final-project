@@ -65,11 +65,11 @@ class ChooseStyleActivity : AppCompatActivity() {
                 startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.styleFive -> {
-                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style6.jpg")
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style24.jpg")
                 startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.styleSix -> {
-                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style17.jpg")
+                ResultActivity.Companion.inputStylePath = getUriFromAssetName("style13.jpg")
                 startActivity(Intent(this, ResultActivity::class.java), ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
             R.id.styleSeven -> {
