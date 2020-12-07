@@ -79,7 +79,7 @@ class ChoosePhotoActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE) {
             val imageView: ImageView = findViewById<View>(R.id.image_result) as ImageView
             //set imageView
             imageView.setImageURI(Uri.fromFile(File(getLastTakenPicture())));
