@@ -21,6 +21,7 @@ private const val TAG = "PhotAct"
 class ChoosePhotoActivity : AppCompatActivity() {
     val REQUEST_IMAGE_PICKER = 100
     val REQUEST_IMAGE_CAPTURE = 200
+    val CANCEL_IMAGE_CAPTURE = 300
     lateinit var currentPhotoPath: String
 
 
@@ -78,7 +79,7 @@ class ChoosePhotoActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             val imageView: ImageView = findViewById<View>(R.id.image_result) as ImageView
             //set imageView
             imageView.setImageURI(Uri.fromFile(File(getLastTakenPicture())));

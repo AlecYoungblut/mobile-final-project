@@ -56,6 +56,8 @@ class CameraActivity : AppCompatActivity() {
 
         backwardsTakePhotoButton = findViewById(R.id.camera_capture_button)
         forwardsTakePhotoButton = findViewById(R.id.camera_front_capture_button)
+        backwardsTakePhotoButton.visibility = View.VISIBLE
+        forwardsTakePhotoButton.visibility = View.INVISIBLE
     }
 
     override fun onRequestPermissionsResult(
@@ -74,6 +76,11 @@ class CameraActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+
+    fun onCancelButtonClick(view: View){
+        setResult(300)
+        finish()
     }
 
     fun onTakePhotoButtonClick(view: View) {

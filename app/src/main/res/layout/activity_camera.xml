@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CameraActivity">
@@ -26,14 +25,16 @@
         android:layout_width="88dp"
         android:layout_height="60dp"
         android:layout_marginEnd="96dp"
-        android:layout_marginBottom="16dp"
         android:elevation="2dp"
         android:onClick="onTakeFrontPhotoButtonClick"
         android:scaleType="fitCenter"
         android:text="Take Photo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/camera_swap_face"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/camera_swap_face2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.977"
         tools:visibility="invisible" />
 
     <Button
@@ -55,14 +56,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/camera_swap_face2"
+        android:layout_width="38dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="12dp"
+        android:background="@android:drawable/progress_horizontal"
+        android:onClick="onCancelButtonClick"
+        android:padding="0dp"
+        android:paddingStart="0dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="0dp"
+        android:text="←"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/camera_capture_button"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.camera.view.PreviewView
         android:id="@+id/viewFinder"
-        android:layout_width="393dp"
-        android:layout_height="789dp"
+        android:layout_width="395dp"
+        android:layout_height="791dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.523">
 
     </androidx.camera.view.PreviewView>
 
