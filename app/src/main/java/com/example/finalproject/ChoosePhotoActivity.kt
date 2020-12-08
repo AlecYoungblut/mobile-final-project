@@ -7,10 +7,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import java.io.File
@@ -22,12 +22,15 @@ class ChoosePhotoActivity : AppCompatActivity() {
     val REQUEST_IMAGE_PICKER = 100
     val REQUEST_IMAGE_CAPTURE = 200
     val CANCEL_IMAGE_CAPTURE = 300
+    var isImageSelected = false;
+    lateinit var imageView: ImageView
     lateinit var currentPhotoPath: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_choose_photo)
+        imageView = findViewById<View>(R.id.image_result) as ImageView
     }
 
     fun onPreviousButtonClick(view: View) {
@@ -36,8 +39,13 @@ class ChoosePhotoActivity : AppCompatActivity() {
     }
 
     fun onNextButtonClick(view: View) {
-        val intent = Intent(this, ChooseStyleActivity::class.java)
-        startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        if(isImageSelected){
+            val intent = Intent(this, ChooseStyleActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
+        else{
+            Toast.makeText(this, "Please select an image!", Toast.LENGTH_LONG).show()
+        }
     }
 
     fun onQuestionMarkButtonClick(view: View) {
@@ -66,7 +74,7 @@ class ChoosePhotoActivity : AppCompatActivity() {
     }
 
     private fun getLastTakenPicture(): String {
-        val directory = baseContext.filesDir // externalMediaDirs.first()
+        val directory = baseContext.filesDir
         var files =
             directory.listFiles()?.filter { file -> file.absolutePath.endsWith(".jpg") }?.sorted()
         if (files == null || files.isEmpty()) {
@@ -80,25 +88,28 @@ class ChoosePhotoActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_IMAGE_CAPTURE) {
-            val imageView: ImageView = findViewById<View>(R.id.image_result) as ImageView
-            //set imageView
+            isImageSelected = true;
+
             imageView.setImageURI(Uri.fromFile(File(getLastTakenPicture())));
-            //imageView.setImageURI(Uri.parse(data?.getStringExtra("photo_uri_string")))
-            ResultActivity.Companion.inputPhotoPath = getLastTakenPicture()
-            ResultActivity.Companion.inputPhoto = imageView.drawToBitmap()
+
+            ResultActivity.inputPhotoPath = getLastTakenPicture()
+            ResultActivity.inputPhoto = imageView.drawToBitmap()
         }
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE_PICKER) {
-            val imageView: ImageView = findViewById<View>(R.id.image_result) as ImageView
+            isImageSelected = true;
+
             imageView.setImageURI(data?.data) // handle chosen image
+
             val selectedImage: Uri = data?.data!!
             val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
             val cursor = contentResolver.query(selectedImage, filePathColumn, null, null, null)
             cursor!!.moveToFirst()
-            val columnIndex = cursor!!.getColumnIndex(filePathColumn[0])
-            val picturePath = cursor!!.getString(columnIndex)
-            cursor!!.close()
-            ResultActivity.Companion.inputPhotoPath = picturePath
-            ResultActivity.Companion.inputPhoto = imageView.drawToBitmap()
+            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+            val picturePath = cursor.getString(columnIndex)
+            cursor.close()
+
+            ResultActivity.inputPhotoPath = picturePath
+            ResultActivity.inputPhoto = imageView.drawToBitmap()
         }
     }
 }

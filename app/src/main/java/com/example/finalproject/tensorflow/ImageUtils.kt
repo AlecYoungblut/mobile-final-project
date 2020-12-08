@@ -27,19 +27,8 @@ import java.io.File
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-/**
- * Collection of image reading and manipulation utilities in the form of static functions.
- * TODO: this class should be moved to the common code in the future
- */
 abstract class ImageUtils {
   companion object {
-
-    /**
-     * Helper function used to convert an EXIF orientation enum into a transformation matrix
-     * that can be applied to a bitmap.
-     *
-     * @param orientation - One of the constants from [ExifInterface]
-     */
     private fun decodeExifOrientation(orientation: Int): Matrix {
       val matrix = Matrix()
 
@@ -60,21 +49,13 @@ abstract class ImageUtils {
           matrix.postRotate(90F)
         }
 
-        // Error out if the EXIF orientation is invalid
         else -> throw IllegalArgumentException("Invalid orientation: $orientation")
       }
 
-      // Return the resulting matrix
       return matrix
     }
 
-    /**
-     * Decode a bitmap from a file and apply the transformations described in its EXIF data
-     *
-     * @param file - The image file to be read using [BitmapFactory.decodeFile]
-     */
     fun decodeBitmap(file: File): Bitmap {
-      // First, decode EXIF data and retrieve transformation matrix
       val exif = ExifInterface(file.absolutePath)
       val transformation =
         decodeExifOrientation(
@@ -83,7 +64,6 @@ abstract class ImageUtils {
           )
         )
 
-      // Read bitmap using factory methods, and transform it using EXIF data
       val bitmap = BitmapFactory.decodeFile(file.absolutePath)
       return Bitmap.createBitmap(
         BitmapFactory.decodeFile(file.absolutePath),
@@ -139,9 +119,6 @@ abstract class ImageUtils {
         for (x in 0 until width) {
           val value = intValues[pixel++]
 
-          // Normalize channel values to [-1.0, 1.0]. This requirement varies by
-          // model. For example, some models might require values to be normalized
-          // to the range [0.0, 1.0] instead.
           inputImage.putFloat(((value shr 16 and 0xFF) - mean) / std)
           inputImage.putFloat(((value shr 8 and 0xFF) - mean) / std)
           inputImage.putFloat(((value and 0xFF) - mean) / std)
@@ -170,7 +147,7 @@ abstract class ImageUtils {
       imageWidth: Int,
       imageHeight: Int
     ): Bitmap {
-      val conf = Bitmap.Config.ARGB_8888 // see other conf types
+      val conf = Bitmap.Config.ARGB_8888
       val styledImage = Bitmap.createBitmap(imageWidth, imageHeight, conf)
 
       for (x in imageArray[0].indices) {
@@ -181,7 +158,6 @@ abstract class ImageUtils {
             (imageArray[0][x][y][2] * 255).toInt()
           )
 
-          // this y, x is in the correct order!!!
           styledImage.setPixel(y, x, color)
         }
       }

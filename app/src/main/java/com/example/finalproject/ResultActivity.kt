@@ -133,17 +133,16 @@ class ResultActivity :
         var test = inputPhoto.toString()
         var test2 = test.removeRange(0, 24)
 
-        // Request camera permissions
         if (allPermissionsGranted()) {
             saveImageToGallery(resultImageView.drawToBitmap(), test2)
-            Toast.makeText(this, "Image saved! ${test2}.jpg", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Image saved! ${test2}.jpg", Toast.LENGTH_LONG).show()
         } else {
             ActivityCompat.requestPermissions(
                     this,
                     REQUIRED_PERMISSIONS,
                     REQUEST_CODE_PERMISSIONS
             )
-            Toast.makeText(this, "Click the generated image again!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Click the download button again!", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -151,10 +150,9 @@ class ResultActivity :
         var test = inputPhoto.toString()
         var test2 = test.removeRange(0, 24)
 
-        // Request camera permissions
         if (allPermissionsGranted()) {
             val uri = saveImageToGallery(resultImageView.drawToBitmap(), test2)
-            Toast.makeText(this, "Image saved! ${test2}.jpg", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Image saved! ${test2}.jpg", Toast.LENGTH_LONG).show()
             val share = Intent(Intent.ACTION_SEND)
             share.type = "image/jpeg"
             share.putExtra(Intent.EXTRA_STREAM,uri)
@@ -165,7 +163,7 @@ class ResultActivity :
                     REQUIRED_PERMISSIONS,
                     REQUEST_CODE_PERMISSIONS
             )
-            Toast.makeText(this, "Click the generated image again!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Click the download button again!", Toast.LENGTH_LONG).show()
         }
 
     }
@@ -237,7 +235,6 @@ class ResultActivity :
 
     private fun startRunningModel() {
         if (!isRunningModel && selectedStyle.isNotEmpty()) {
-            //setImageView(styleImageView, selectedStyle)
             resultImageView.visibility = View.INVISIBLE
             progressBar.visibility = View.VISIBLE
             viewModel.onApplyStyle(
@@ -275,7 +272,7 @@ class ResultActivity :
         }
 
         companion object {
-            private const val ID = "org.tensorflow.lite.examples.styletransfer.CropTop"
+            private const val ID = "com.example.finalproject.CropTop"
             private val ID_BYTES = ID.toByteArray(Charset.forName("UTF-8"))
         }
     }
