@@ -3,6 +3,7 @@ Android application to achieve artistic style transfer between a pre-set number 
 
 ## Demos
 ![123](https://j.gifs.com/VAX3wv.gif)
+![123](https://j.gifs.com/ZY27Aw.gif)
 [Video #1](https://youtu.be/PVWGOjtIWP0)
 [Video #2](https://youtu.be/RsDBoP2yZ14)
 
