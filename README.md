@@ -1,10 +1,8 @@
 ## About
 Android application to achieve artistic style transfer between a pre-set number of "style" photos and either a new photo taken during execution or one selected from the gallery. 
 
-## Videos
-![Alt Text](https://j.gifs.com/VAX3wv.gif)
-![Alt Text](https://j.gifs.com/ZY27Aw.gif)
-
+## Demos
+![](https://j.gifs.com/VAX3wv.gif)
 [Video #1](https://youtu.be/PVWGOjtIWP0)
 [Video #2](https://youtu.be/RsDBoP2yZ14)
 
